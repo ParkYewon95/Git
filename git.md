@@ -18,6 +18,7 @@ Initialized empty Git repository in C:/Users/student/Desktop/til/.git/
 ```
 
 * 저장소(repository)를 초기화 하게 되면, `.git`폴더가 해당 디렉토리에 생성된다.
+* $ git init 은 여러 프로젝트를 진행중일 경우 해당 폴더에 가서 명령어를  실행해서 초기화해주어야 한다.
 * bash 창에서는 (master) 라고 표기된다.
   * 현재 브랜치가 master라는 것을 의미한다.
 
