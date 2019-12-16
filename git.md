@@ -212,3 +212,19 @@ commit 9e3a1203317e087ca6743111ee70c25852615859 (HEAD -> master, origin/master)
 
 ```
 
+
+
+---------------
+
+## Git Ignor
+
+[ GitIgnor 정형화 작업](https://www.gitignore.io/)
+
+![image-20191216153224782](image/image-20191216153224782.png)
+
+![image-20191216153246300](image/image-20191216153246300.png)
+
+* 자바와 이클립스를 ignore 하기 위한 가장 일반적인 형식을 제공하는 프로그램.
+
+* gitignore는 깃헙으로 관리하지 않을 파일을 명시해주는 파일이다.
+
