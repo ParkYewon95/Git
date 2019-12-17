@@ -636,6 +636,20 @@ Deleted branch feature/board (was 2da6c78).
 
 
 
+---------------------------------------
+
+# * GitHub Flow
+
+## 1. 저장소 공유하기
+
+new repository - settings - collaborate - username - invite copy link 
+
+
+
+
+
+## 2. Fork & 
+
 
 
 -------------------
