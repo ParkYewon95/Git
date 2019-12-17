@@ -1,4 +1,4 @@
-# * git 기초
+# * GIT 기초
 
 ## (0) 준비 사항
 
@@ -131,6 +131,7 @@ nothing to commit, working tree clean
 ### Log
 
 * log 로 commit한 이력을 확인할 수 있다.
+* `git log --oneline` 명령어로 간략히 commit 이력을 확인할 수 있다. 
 
 ``` bash
 $ git log
@@ -230,10 +231,6 @@ commit 9e3a1203317e087ca6743111ee70c25852615859 (HEAD -> master, origin/master)
 
 
 
--------------------
-
-
-
 ## (3) 원격 저장소 데려오기 - Clone/Pull
 
 ### 준비사항
@@ -310,7 +307,11 @@ $ git push origin master
 
 
 
-# * 충돌 상황 (Error situation)
+----------------------
+
+
+
+# * 충돌 상황 (Conflict situation)
 
 > 만약, 원격저장소의 이력과 로컬저장소의 이력이 다를 경우 push 가 거절되면서 아래의 메시지가 발생한다.
 
@@ -339,6 +340,298 @@ $ git pull origin master
 
 ``` bash
 $ git push origin master
+```
+
+
+
+----------------------------------------
+
+
+
+# * GIT branch
+
+## Branch 시나리오
+
+### 상황 1. fast-foward
+
+> feature 브랜치 생성된 이후 master 브랜치에 변경 사항이 없는 상황
+
+1. feature/test branch 생성 및 이동
+
+   ```bash
+   $ git branch feature/test
+   $ git checkout feature/test
+   
+   # 위 두줄을 요약해서 아래와 같은 명령으로 쓸 수 있다.
+   $ git checkout -b feature/test
+   Switched to branch 'feature/index'
+   ```
+
+2. 작업 완료 후 commit
+
+   ```bash
+   $ touch index.html
+   $ git add index.html
+   $ git commit -m "complete test"
+   [feature/index 4c4f2e8] Complete index page
+    1 files changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 index.html
+   ```
+
+3. master 이동
+
+   ```bash
+   $ git checkout master
+   Switched to branch 'master'
+   (master) $
+   ```
+
+4. master에 병합
+
+   ```bash
+   (master) $ git merge feature/test
+   ```
+
+5. 결과 -> fast-foward (단순히 HEAD를 이동)
+
+   ```bash
+   Updating 632d84a..4c4f2e8
+   Fast-forward 
+    index.html | 0
+    1 files changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 index.html
+   ```
+
+6. branch 삭제
+
+```bash
+$ git branch -d feature/index
+Deleted branch feature/index (was 4c4f2e8).
+```
+
+
+
+--------------------
+
+### 상황 2. merge commit
+
+> 서로 다른 이력(commit)을 병합(merge)하는 과정에서 다른 파일이 수정되어 있는 상황
+>
+> git이 auto merging을 진행하고, commit이 발생된다.
+>
+> ** 가장 일반적인 경우이다.
+
+1. feature/signout branch 생성 및 이동
+
+   ```bash
+   $ git checkout -b feature/signout # 생성 및 이동
+   Switched to a new branch 'feature/signout'
+   
+   # $ git branch feature/signout
+   # $ git checkout feature/signout
+   ```
+
+2. 작업 완료 후 commit
+
+   ```bash
+   $ touch signout.html
+   $ git add signout.html
+   $ git commit -m "add signout_page"
+   [feature/signout 2f76532] add signout_page
+    1 file changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 signout.html
+   ```
+
+3. master 이동
+
+   ```bash
+   $ git checkout master
+   Switched to branch 'master'
+   ```
+
+4. master에 추가 commit 이 발생시키기!!
+
+   *** 다른 파일을 수정 혹은 생성하세요!**
+
+   ```bash
+   $ touch hotfix.txt
+   $ git add ..
+   $ git commit -m "Hotfix add on master"
+   ```
+
+   ```bash
+   $ git log --oneline
+   2228691 (HEAD -> master) Hotfix add on master
+   4c4f2e8 Complete index page
+   632d84a add readme.md
+   # branch feature/signout 에서 commit 한 add signout_page 이력이 없다!
+   ```
+
+5. master에 병합
+
+   ```bash
+   (master) $ git merge feature/signout
+   Merge made by the 'recursive' strategy.
+    signout.html | 0
+    1 file changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 signout.html
+   ```
+
+6. 결과 -> 자동으로 *merge commit 발생*
+
+   - vim 편집기 화면이 나타납니다.
+
+   - 자동으로 작성된 커밋 메시지를 확인하고, `esc`를 누른 후 `:wq`를 입력하여 저장 및 종료를 합니다.
+
+     - `w` : write
+     - `q` : quit
+
+   - 커밋이 확인 해봅시다.
+
+     
+
+7. 그래프 확인하기
+
+   ```bash
+   $ git log --oneline --graph
+   ```
+
+   ![image-20191217152422216](image/image-20191217152422216.png)
+
+8. branch 삭제
+
+   ```bash
+   $ git branch -d feature/signout
+   Deleted branch feature/signout (was 4c4f2e8).
+   ```
+
+   
+
+------
+
+### 상황 3. merge commit 충돌
+
+> 서로 다른 이력(commit)을 병합(merge)하는 과정에서 동일 파일이 수정되어 있는 상황
+>
+> git이 auto merging을 하지 못하고, 해당 파일의 위치에 <u>라벨링</u>을 해준다.
+>
+> 원하는 형태의 코드로 직접 수정을 하고 merge commit을 발생 시켜야 한다.
+
+1. feature/board branch 생성 및 이동
+
+   ```bash
+   $ git checkout -b feature/board
+   ```
+
+2. 작업 완료 후 commit
+
+   ```bash
+   $ touch board.html
+   # README.md 수정
+   $ git add .
+   $ git commit -m "add board.html"
+   [feature/board 2da6c78] add board.html
+    2 files changed, 3 insertions(+)
+    create mode 100644 board.html
+   ```
+
+3. master 이동
+
+   ```bash
+   $ git checkout master
+   Switched to branch 'master'
+   ```
+
+4. *master에 추가 commit 이 발생시키기!!*
+
+   - **동일 파일을 수정 혹은 생성하세요!** 
+
+   ```bash
+   # README.md 수정
+   $ git add .
+   $ git commit -m "modify readme.md"
+   [master a472903] modify readme
+    1 file changed, 1 insertion(+)
+   ```
+
+   
+
+5. master에 병합
+
+   ```bash
+   $ git merge feature/board
+   Auto-merging README.md
+   Auto-merging README.md
+   CONFLICT (content): Merge conflict in README.md
+   Automatic merge failed; fix conflicts and then commit the result.
+   ```
+
+   ![image-20191217154540846](image/image-20191217154540846.png)
+
+6. 결과 -> *merge conflict발생*
+
+   ```bash
+   $ git status
+   On branch master
+   You have unmerged paths.
+     (fix conflicts and run "git commit")
+     (use "git merge --abort" to abort the merge)
+   
+   Changes to be committed:
+           new file:   board.html
+   
+   Unmerged paths:
+     (use "git add <file>..." to mark resolution)
+           both modified:   README.md
+   ```
+
+   
+
+7. 충돌 확인 및 해결
+
+   * README.md 를 열어보면 이렇게 라벨링이 달린다.
+
+   ![image-20191217154835155](image/image-20191217154835155.png)
+
+   * Head(현재상황) , 아래에 feature/board 변화 내역들이 보인다.
+   * 원하는 형태로 코드를 수정 후 저장합니다.
+
+8. merge commit 진행
+
+   ```bash
+   $ git add .
+   $ git commit
+   ```
+
+   - vim 편집기 화면이 나타납니다.
+   - 자동으로 작성된 커밋 메시지를 확인하고, `esc`를 누른 후 `:wq`를 입력하여 저장 및 종료를 합니다.
+     - `w` : write
+     - `q` : quit
+   - 커밋이 확인 해봅시다.
+
+9. 그래프 확인하기
+
+   ``` bash
+   $ git log --oneline --graph
+   *   54fab4d (HEAD -> master) Merge branch 'feature/board'
+   |\
+   | * 2da6c78 (feature/board) add board.html
+   * | a472903 modify readme
+   |/
+   *   0b488b2 Merge branch 'feature/signout'
+   |\
+   | * 2f76532 (feature/signout) add signout_page
+   * | 2228691 Hotfix add on master
+   |/
+   * 4c4f2e8 Complete index page
+   * 632d84a add readme.md    
+   ```
+
+10. branch 삭제
+
+```bash
+$ git branch -d feature/board
+Deleted branch feature/board (was 2da6c78).
 ```
 
 
