@@ -1,4 +1,4 @@
-# git 기초
+# * git 기초
 
 ## (0) 준비 사항
 
@@ -309,6 +309,37 @@ $ git push origin master
 ```
 
 
+
+# * 충돌 상황 (Error situation)
+
+> 만약, 원격저장소의 이력과 로컬저장소의 이력이 다를 경우 push 가 거절되면서 아래의 메시지가 발생한다.
+
+``` bash
+$ git push
+To https://github.com/ParkYewon95/database.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/ParkYewon95/database.git'
+# 원격저장소의 작업내용(work - commit)과 로컬 내용이 다르다.
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+# 원격저장소 변경사항(changes)을 통합하고 다시 push 하라.
+# 예) git pull ...
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+** 이 메시지를 보게 된다면, 로컬에서 git log (--oneline) , 원격 저장소(github)의 커밋 이력들을 확인하고 다른 부분을 체크하자!
+
+``` bash
+$ git pull origin master
+```
+
+** pull 로 통합한 이후,
+
+``` bash
+$ git push origin master
+```
 
 
 
