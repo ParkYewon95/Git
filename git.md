@@ -216,7 +216,7 @@ commit 9e3a1203317e087ca6743111ee70c25852615859 (HEAD -> master, origin/master)
 
 ---------------
 
-## Git Ignor
+### Git Ignor
 
 [ GitIgnor 정형화 작업](https://www.gitignore.io/)
 
@@ -228,3 +228,102 @@ commit 9e3a1203317e087ca6743111ee70c25852615859 (HEAD -> master, origin/master)
 
 * gitignore는 깃헙으로 관리하지 않을 파일을 명시해주는 파일이다.
 
+
+
+-------------------
+
+
+
+## (3) 원격 저장소 데려오기 - Clone/Pull
+
+### 준비사항
+
+* 데스크탑 1 의 git 저장소 - 멀티캠퍼스 컴퓨터 (데이터베이스 폴더)
+
+``` bash
+$ git init
+$ touch a.txt
+$ git add .
+$ git commit -m 'Init'
+```
+
+
+
+* 데스크탑 2 에 git 저장소  - 집 컴퓨터 (database 폴더)
+
+``` bash
+# 처음에만
+$ git clone {url}
+
+# 이후 추가작업은 (.git 파일이 있는 위치에서)  
+$ git pull origin master
+
+```
+
+* github 원격 저장소
+
+### 시나리오
+
+> 작업을 완료한 이후에는 항상 push.
+>
+> 작업을 시작하기 전에는 항상 pull.
+
+1. 데스크탑 1 작업 시작
+
+``` bash
+$ git pull origin master
+```
+
+2. 데스크탑 1 작업
+
+```bash
+# 임의의 파일 수정/생성 등
+$ git add .
+$ git commit -m "message"
+```
+
+3. 데스크탑1 작업 완료
+
+``` bash
+$ git push origin master
+```
+
+4. 데스크탑 2 작업 시작
+
+``` bash
+$ git pull origin master
+```
+
+5. 데스크탑 2 작업
+
+``` bash
+# 임의의 파일 수정/생성 등
+$ git add .
+$ git commit -m "message"
+```
+
+6. 데스크탑2 작업완료
+
+``` bash
+$ git push origin master
+```
+
+
+
+
+
+
+
+-------------------
+
+
+
+# github 호스팅 서비스 이용하기
+
+* 무료 웹 서비스 사용 가능
+  * 저장소 이름을 name.github.io 로 생성하면 된다! 
+  * push후 개발
+
+* Start bootstrap - resume  만들어져 있는 소스코드 사용 가능.
+
+ 
