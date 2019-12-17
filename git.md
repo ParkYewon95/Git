@@ -640,15 +640,29 @@ Deleted branch feature/board (was 2da6c78).
 
 # * GitHub Flow
 
-## 1. 저장소 공유하기
-
-new repository - settings - collaborate - username - invite copy link 
+>  shared repository Model / Fork & Pull Model 의 차이는 작업자가 저장소에 직접 push할 수 있는 권한이 있는지 없는지의 차이이다.
 
 
 
+## 1. 저장소 공유하기 (push 권한 있음)
+
+>  new repository - settings - collaborate - username - invite copy link 
+
+clone - add - commit - push 
+
+pull - add - commit - push
 
 
-## 2. Fork & 
+
+## 2. Fork & Pull 모델 (push권한 없음)
+
+fork - 복제 후 내 권한으로 생성된 복제 저장소를 clone 해서 코드를 수정한 후 push까지 해서 pull request한다!
+
+* collaborate로 초대받지 못한 저장소에 pull request를 통해 코드를 반영하게 한다.
+
+* 오른쪽 상단 Star 옆에 Fork 를 누르면 복제. - 내 저장소에 복사된 저장소가 생긴다.
+* 내 저장소에 변경된 코드를 add , commit , push 한다.
+* new pull request를 선택해서 merge 요청을 한다!
 
 
 
