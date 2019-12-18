@@ -4,6 +4,8 @@
 
 ## [JAVA](./java)
 
+## [Python](./Python/)
+
 
 
 ## Git사용법
