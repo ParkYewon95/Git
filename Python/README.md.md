@@ -4,10 +4,10 @@
 
 * dictionary 
 
-  * dict = { key:value, ~~}
+  * dict = { key:value, ~~ }
 
     ```python
-  dictionary = { 1 : "철수" , 2: "짱구", 3:"훈이"}
+   dictionary = { 1 : "철수" , 2: "짱구", 3:"훈이"}
     ```
 
   * value 를 얻는 방법
@@ -21,8 +21,9 @@
     ​	- key 가 없으면 none 출력
 
 * List / String / Dictionary 의 size 
-  * `len()`  함수 사용
-
+  
+* `len()`  함수 사용
+  
 * visual studio 단축키 
   * 행 복사 = shift + alt + 방향키
   * 행 삭제 = shift + delete 
