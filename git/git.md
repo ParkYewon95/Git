@@ -225,9 +225,9 @@ commit 9e3a1203317e087ca6743111ee70c25852615859 (HEAD -> master, origin/master)
 
 [ GitIgnor 정형화 작업](https://www.gitignore.io/)
 
-![image-20191216153224782](image/image-20191216153224782.png)
+![image-20191216153224782](../image/image-20191216153224782.png)
 
-![image-20191216153246300](image/image-20191216153246300.png)
+![image-20191216153246300](../image/image-20191216153246300.png)
 
 * 자바와 이클립스를 ignore 하기 위한 가장 일반적인 형식을 제공하는 프로그램.
 
@@ -500,7 +500,7 @@ Deleted branch feature/index (was 4c4f2e8).
    $ git log --oneline --graph
    ```
 
-   ![image-20191217152422216](image/image-20191217152422216.png)
+   ![image-20191217152422216](../image/image-20191217152422216.png)
 
 8. branch 삭제
 
@@ -570,7 +570,7 @@ Deleted branch feature/index (was 4c4f2e8).
    Automatic merge failed; fix conflicts and then commit the result.
    ```
 
-   ![image-20191217154540846](image/image-20191217154540846.png)
+   ![image-20191217154540846](../image/image-20191217154540846.png)
 
 6. 결과 -> *merge conflict발생*
 
@@ -595,7 +595,7 @@ Deleted branch feature/index (was 4c4f2e8).
 
    * README.md 를 열어보면 이렇게 라벨링이 달린다.
 
-   ![image-20191217154835155](image/image-20191217154835155.png)
+   ![image-20191217154835155](../image/image-20191217154835155.png)
 
    * Head(현재상황) , 아래에 feature/board 변화 내역들이 보인다.
    * 원하는 형태로 코드를 수정 후 저장합니다.
