@@ -6,13 +6,14 @@
 
 
 
-## 기타
+## Git사용법
 
-* [Git](./git)
-* 마크다운
-* [git](git.md)
+* Git 
 
+  * [Git](./git/git.md) - 저장소 설정 & Commit/Push
+  * [gitignore](./git/gitignore.md) - GitIgnor 파일 설명
+  * [git status & undoing ](./git/Git_status&Undoing) -  
 
+* [마크다운](markdown.md) - 마크다운 사용법
 
-* [bookdata](java/java01/bookdata.txt)
-
+  

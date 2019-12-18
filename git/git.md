@@ -77,7 +77,6 @@ Changes to be committed:
 
 ``` bash
 $ git commit -m {message}
-
 ```
 
 * 커밋 메시지는 항상 해당 이력에 대한 정보를 담을 수 있도록 작성하는 것이 좋다.
@@ -161,7 +160,7 @@ Date:   Mon Dec 16 14:28:11 2019 +0900
 ### 1. 원격 저장소 설정
 
 ```bash
-$git remote add origin {github url}
+$ git remote add origin {github url}
 ```
 
 * {github url} 부분에는 원격 저장소 url을 작성한다. 
@@ -172,7 +171,12 @@ $git remote add origin {github url}
 $ git remote -v
 origin  https://github.com/ParkYewon95/Git.git (fetch)
 origin  https://github.com/ParkYewon95/Git.git (push)
+```
 
+* 원격 저장소 삭제
+
+```bash
+$ git remote rm origin
 ```
 
 
