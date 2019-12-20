@@ -224,6 +224,8 @@ print(empty)
 
 
 
+
+
 # Python Flask - 간단 웹 프레임워크
 
 > Flask는 Python으로 구동되는 웹 어플리케이션 프레임워크이다. 
